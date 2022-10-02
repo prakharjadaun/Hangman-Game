@@ -1,14 +1,17 @@
 #include<iostream>
-#include "Hangman.cpp"
+#include "Hangman.cpp"         
 using namespace std;
 
+//main function
 int main()
 {
+    //creating an object of the Hangman class
     Hangman man;
+    //calling the desired functions of the Hangman class
     man.intro();
-    man.InputUserName();
+    man.inputUsername();
     cout<<endl<<"Generating a six letter word........!"<<endl;
-    man.WordGenerator();
-    man.main_algo();
+    man.wordGenerator();
+    man.mainAlgo();
     return 0;
 }
