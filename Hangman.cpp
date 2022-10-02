@@ -4,6 +4,7 @@
 #include<time.h>                  //for time() function and srand() function
 using namespace std;             
 
+//definning the class Hangman
 class Hangman
 {
     string name;                        //name of the player
@@ -11,6 +12,8 @@ class Hangman
     char Output[6];
 
     public:
+        //constructor of the class Hangman
+        //assigning the blank spaces initially to the output char array
         Hangman()
         {
             Output[0] = '_';
@@ -20,18 +23,20 @@ class Hangman
             Output[4] = '_';
             Output[5] = '_';
         }
-
+        //member function declaration
         void intro();                            //to print the introduction to the game
-        void InputUserName();                    //to input the user name
-        void WordGenerator();                    //to generate a siz letter word
-        void main_algo();                        //to execute the main algo
-        char CheckPresence(char var);            //to check the presence the of the input character
-        void DisplayHangman(int num);            //to dislay the hangman 
-        void PrintLetters();                     //to display the Letters one by one
+        void inputUsername();                    //to input the user name
+        void wordGenerator();                    //to generate a siz letter word
+        void mainAlgo();                        //to execute the main algo
+        char checkPresence(char var);            //to check the presence the of the input character
+        void displayHangman(int num);            //to dislay the hangman 
+        void printLetters();                     //to display the Letters one by one
 
 };
 
+//member function definitions
 
+//function to print the introduction and the rules of the hangman game
 void Hangman::intro()
 {
     cout<<"\t\t\t\t-------------------------------------------------------------------------------------------"<<endl;
@@ -41,7 +46,7 @@ void Hangman::intro()
     cout<<"\t\t\t\t-------------------------------------------------------------------------------------------"<<endl;
     cout<<"\t\t\t\t*******************************************************************************************"<<endl;
     cout<<"\t\t\t\t-------------------------------------------------------------------------------------------"<<endl;
-    DisplayHangman(6);
+    displayHangman(6);
     cout<<endl;
     cout<<endl;
     cout<<"\t\t\t\t                     -------------------------------------------------                      "<<endl;
@@ -61,13 +66,15 @@ void Hangman::intro()
     cout<<"\n7  Else the man will be hanged!";
 }
 
-void Hangman::InputUserName()
+//function to input the name of the user
+void Hangman::inputUsername()
 {
     cout<<endl<<"Enter Your Name : ";
     cin>>name;
 }
 
-void Hangman::WordGenerator()
+//function to choose a random six letter word
+void Hangman::wordGenerator()
 {
     char WORD[41][7];
     int n;
@@ -118,7 +125,8 @@ void Hangman::WordGenerator()
     strcpy(SixLetters,WORD[n]);
 }
 
-void Hangman::main_algo()
+//function contains the main algorithm of the Hangman game
+void Hangman::mainAlgo()
 {
     char ch,var;
     int n=1;
@@ -127,17 +135,18 @@ void Hangman::main_algo()
     {
         cout<<"Enter the character : ";
         cin>>ch;
-        var=CheckPresence(ch);
+        //checking if the entered letter is in the given six letter word or not
+        var=checkPresence(ch);
         if(var==ch)
         {
-            PrintLetters();
+            printLetters();
         }
         else
         {
             
             cout<<"\t\t\t\t\t\t\tW    R   O   N   G       G   U   E   S   S   !";
-            DisplayHangman(n);
-            PrintLetters();
+            displayHangman(n);
+            printLetters();
             if(n==6)
             {
                 cout<<endl<<name<<" you have lost the game !"<<endl;
@@ -149,7 +158,8 @@ void Hangman::main_algo()
     }
 }
 
-char Hangman::CheckPresence(char var)
+//function to check the presence of the character entered by the user
+char Hangman::checkPresence(char var)
 {
     int check=0;
     for(int i=0;SixLetters[i]!='\0';i++)
@@ -171,7 +181,8 @@ char Hangman::CheckPresence(char var)
     
 }
 
-void Hangman::PrintLetters()
+//function to print the six letter word
+void Hangman::printLetters()
 {
     int count=0;
     cout<<endl<<"Your Word : ";
@@ -196,7 +207,8 @@ void Hangman::PrintLetters()
     }
 }
 
-void Hangman::DisplayHangman(int num)
+//function to display the hangman if the user input a wrong letter
+void Hangman::displayHangman(int num)
 {
     char a=' ',b=' ',c=' ',d=' ',e=' ',f=' ';
     if(num==1)
