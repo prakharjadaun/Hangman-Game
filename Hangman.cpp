@@ -31,16 +31,6 @@ class Hangman
 
 };
 
-int main()
-{
-    Hangman man;
-    man.intro();
-    man.InputUserName();
-    cout<<endl<<"Generating a six letter word........!"<<endl;
-    man.WordGenerator();
-    man.main_algo();
-    return 0;
-}
 
 void Hangman::intro()
 {
@@ -185,7 +175,7 @@ void Hangman::PrintLetters()
 {
     int count=0;
     cout<<endl<<"Your Word : ";
-    for(int i=0;Output[i]!='\0';i++)
+    for(int i=0;i<6;i++)
     {
         if(Output[i]=='_')
         {
